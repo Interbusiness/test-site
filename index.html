@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кузнецов Д.А. - Банкротство физических лиц</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #07090F;
+            --accent-red: #C52C32;
+            --accent-red-hover: #A02026;
+            --text-main: #FFFFFF;
+            --text-muted: #A0A5B1;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-blue: #1C2F54;
+            --font-headers: 'Oswald', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-dark);
+            line-height: 1.5;
+            background-image: linear-gradient(rgba(7, 9, 15, 0.8), rgba(7, 9, 15, 0.9)), url('img/lawer.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            background-color: var(--accent-red);
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-block;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-red-hover);
+            transform: translateY(-2px);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-headers);
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-name {
+            font-family: var(--font-headers);
+            font-size: 24px;
+            color: var(--accent-red);
+            letter-spacing: 1px;
+        }
+
+        .logo-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.2;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding-left: 15px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-red);
+        }
+
+        .header-action {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .whatsapp-icon {
+            color: var(--whatsapp-green);
+            font-size: 28px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 100px 0 60px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            margin-bottom: 80px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #D1D5DB;
+        }
+
+        .hero-title {
+            font-size: clamp(40px, 6vw, 80px);
+            line-height: 1.05;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .hero-cards {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-card {
+            flex: 1;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .hero-card-title {
+            font-size: 48px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .hero-card-desc {
+            font-size: 14px;
+            color: #D1D5DB;
+        }
+
+        /* SERVICES SECTION */
+        .services {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .services-bg-dogovor {
+            position: absolute;
+            left: -100px;
+            top: 200px;
+            opacity: 0.15;
+            width: 600px;
+            z-index: -1;
+            transform: rotate(-15deg);
+        }
+
+        .services-grid {
+            display: flex;
+            gap: 40px;
+        }
+
+        .services-left, .services-right {
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: clamp(30px, 4vw, 40px);
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .promos-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .promo-card {
+            background: rgba(30, 60, 114, 0.4);
+            border: 1px solid rgba(80, 130, 200, 0.3);
+            border-radius: 10px;
+            padding: 25px;
+            transition: background 0.3s;
+        }
+
+        .promo-card:hover {
+            background: rgba(30, 60, 114, 0.6);
+        }
+
+        .promo-card h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .promo-card ul {
+            font-size: 12px;
+            color: #D1D5DB;
+            padding-left: 15px;
+        }
+
+        .promo-card ul li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .promo-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: -15px;
+            color: var(--text-main);
+        }
+
+        .directions-box {
+            background: rgba(15, 25, 45, 0.8);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .direction-item {
+            margin-bottom: 40px;
+        }
+
+        .direction-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .direction-icon {
+            background: #2563EB;
+            color: #FFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .direction-title {
+            font-size: 24px;
+            line-height: 1.2;
+        }
+
+        .direction-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            padding-left: 45px;
+        }
+
+        .direction-result {
+            font-size: 13px;
+            font-weight: 600;
+            padding-left: 45px;
+        }
+
+        .directions-box .btn {
+            margin-left: 45px;
+            margin-top: 10px;
+        }
+
+        /* URGENT SECTION */
+        .urgent {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .urgent-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        .urgent-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        .urgent-title {
+            font-size: clamp(32px, 4vw, 48px);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .urgent-desc {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #D1D5DB;
+            font-size: 15px;
+        }
+
+        .urgent-cards {
+            display: flex;
+            gap: 20px;
+            margin-top: 60px;
+            text-align: left;
+        }
+
+        .urgent-card {
+            flex: 1;
+            background: rgba(15, 30, 60, 0.6);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .urgent-card:hover {
+            transform: translateY(-5px);
+            border-color: #3B82F6;
+        }
+
+        .urgent-card-icon {
+            width: 20px;
+            height: 20px;
+            background: #3B82F6;
+            border-radius: 4px;
+            position: absolute;
+            top: -10px;
+            left: 30px;
+        }
+
+        .urgent-card h4 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            margin-top: 10px;
+            line-height: 1.2;
+        }
+
+        .urgent-card p {
+            font-size: 13px;
+            color: #D1D5DB;
+            margin-bottom: 30px;
+            min-height: 60px;
+        }
+
+        .urgent-card .btn {
+            width: 100%;
+        }
+
+        /* REVIEWS SECTION */
+        .reviews {
+            padding: 80px 0;
+        }
+
+        .reviews-header {
+            max-width: 600px;
+            margin-bottom: 50px;
+        }
+
+        .reviews-header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 15px;
+        }
+
+        .review-card {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: box-shadow 0.3s;
+        }
+
+        .review-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .review-left {
+            width: 250px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-avatar-wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .review-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .review-name {
+            font-family: var(--font-headers);
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .review-city {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .review-left .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 12px;
+        }
+
+        .review-right {
+            flex: 1;
+            position: relative;
+        }
+
+        .review-number {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #2563EB;
+            color: #FFF;
+            font-family: var(--font-headers);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .review-title {
+            font-size: clamp(20px, 3vw, 26px);
+            margin-bottom: 10px;
+            padding-right: 50px;
+        }
+
+        .review-stats {
+            font-size: 13px;
+            color: #D1D5DB;
+            margin-bottom: 25px;
+        }
+
+        .review-quote-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+            color: #D1D5DB;
+            margin-bottom: 15px;
+        }
+
+        .review-quote-line {
+            height: 1px;
+            background-color: var(--accent-red);
+            flex: 0 0 50px;
+        }
+
+        .review-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            padding: 80px 0 120px;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: clamp(28px, 4vw, 40px);
+            margin-bottom: 20px;
+        }
+
+        .contact-desc {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 15px;
+            color: #D1D5DB;
+        }
+
+        .contact-form {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .contact-form input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid transparent;
+            padding: 20px 30px;
+            border-radius: 40px;
+            color: #FFF;
+            font-family: var(--font-body);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .contact-form input:focus {
+            border-color: #3B82F6;
+        }
+
+        .contact-form input::placeholder {
+            color: #A0A5B1;
+        }
+
+        .contact-form .btn {
+            flex: 1;
+            border-radius: 40px;
+            font-size: 16px;
+            padding: 20px;
+        }
+
+        /* КЛАССЫ АНИМАЦИИ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        
+        .fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
+        /* АДАПТИВНОСТЬ (МЕДИАЗАПРОСЫ) */
+        @media (max-width: 1024px) {
+            .services-grid { flex-direction: column; }
+            .promos-grid { grid-template-columns: 1fr; }
+            .urgent-cards { flex-direction: column; }
+            .services-bg-dogovor { display: none; } /* Скрываем фоновый договор на малых экранах */
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; justify-content: center; text-align: center; }
+            .nav-menu { justify-content: center; }
+            .hero-cards { flex-direction: column; }
+            .hero-content { margin-bottom: 40px; }
+            
+            .directions-box .btn { margin-left: 0; }
+            .direction-text, .direction-result { padding-left: 0; }
+            .direction-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            
+            .review-card { flex-direction: column; }
+            .review-left { width: 100%; flex-direction: row; align-items: center; justify-content: space-between; }
+            .review-left .btn { width: auto; padding: 12px 24px; }
+            .review-number { position: relative; display: inline-block; margin-bottom: 15px; }
+            .review-title { padding-right: 0; }
+            
+            .contact-form { flex-direction: column; border-radius: 20px; }
+            .contact-form input, .contact-form .btn { border-radius: 10px; width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            .review-left { flex-direction: column; gap: 15px; }
+            .review-left .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="fade-up">
+            <div class="logo">
+                <div class="logo-name">КУЗНЕЦОВ Д. А.</div>
+                <div class="logo-desc">Банкротство<br>физических лиц</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#">О компании</a></li>
+                <li><a href="#">Отзывы</a></li>
+                <li><a href="#">Банкротство</a></li>
+                <li><a href="#">Помощь должникам</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+            <div class="header-action">
+                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                <a href="#" class="btn">Бесплатная консультация</a>
+            </div>
+        </header>
+
+        <section class="hero fade-up delay-100">
+            <div class="hero-content">
+                <p class="hero-subtitle">Избавлю Вас от задолженностей по кредитам,<br>микрозаймам, налогам и долгам по ЖКХ</p>
+                <h1 class="hero-title">БАНКРОТСТВО<br>ФИЗИЧЕСКИХ ЛИЦ</h1>
+                <a href="#" class="btn">Бесплатная консультация</a>
+            </div>
+
+            <div class="hero-cards">
+                <div class="hero-card fade-up delay-100">
+                    <div class="hero-card-title">4 ГОДА</div>
+                    <div class="hero-card-desc">на рынке юридических<br>услуг</div>
+                </div>
+                <div class="hero-card fade-up delay-200">
+                    <div class="hero-card-title">+100</div>
+                    <div class="hero-card-desc">более 100 довольных<br>клиентов</div>
+                </div>
+                <div class="hero-card fade-up delay-300">
+                    <div class="hero-card-title">+6</div>
+                    <div class="hero-card-desc">от 6 месяцев срок процедуры<br>банкротства</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services">
+            <img src="img/dogovor.png" alt="Договор фон" class="services-bg-dogovor">
+            <div class="services-grid">
+                <div class="services-left fade-up">
+                    <h2 class="section-title">АКЦИИ</h2>
+                    <div class="promos-grid">
+                        <div class="promo-card">
+                            <h4>БАНКРОТСТВО БЕЗ РИСКА</h4>
+                            <ul>
+                                <li>Бесплатный разбор вашей ситуации (10-20 минут)</li>
+                                <li>Предварительный расчет шансов на списание долгов</li>
+                                <li>Подбор оптимального варианта: банкротство / реструктуризация / альтернативы</li>
+                            </ul>
+                        </div>
+                        <div class="promo-card">
+                            <h4>ФИКСИРОВАННАЯ ЦЕНА БЕЗ ДОПЛАТ</h4>
+                            <ul>
+                                <li>Детальная смета до начала работы</li>
+                                <li>Прописаны все расходы в договоре</li>
+                                <li>Возможна рассрочка оплаты на несколько этапов</li>
+                            </ul>
+                        </div>
+                        <div class="promo-card">
+                            <h4>СРОЧНОЕ СНЯТИЕ АРЕСТА</h4>
+                            <ul>
+                                <li>Экстренная консультация в день обращения</li>
+                                <li>Проверка оснований ареста</li>
+                                <li>Подготовка первичного пакета заявлений/ходатайств</li>
+                                <li>При заключении договора на банкротство — подготовка документов для снятия ареста в подарок</li>
+                            </ul>
+                        </div>
+                        <div class="promo-card">
+                            <h4>ВЕРНЁМ НАВЯЗАННЫЕ УСЛУГИ АВТОСАЛОНА</h4>
+                            <ul>
+                                <li>Бесплатная юридическая проверка договора с автосалоном и банком</li>
+                                <li>Выделение навязанных и незаконных услуг</li>
+                                <li>При заключении договора на сопровождение: подготовка претензии и пакета документов к возврату денег — со скидкой 50%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="services-right fade-up delay-100">
+                    <h2 class="section-title">ОСНОВНЫЕ НАПРАВЛЕНИЯ</h2>
+                    <div class="directions-box">
+                        <div class="direction-item">
+                            <div class="direction-header">
+                                <div class="direction-icon">>></div>
+                                <h3 class="direction-title">БАНКРОТСТВО ФИЗИЧЕСКИХ ЛИЦ<br>ПОЛНОЕ ОБНУЛЕНИЕ</h3>
+                            </div>
+                            <p class="direction-text">Если сумма вашей задолженности превышает 300 000 рублей, а платежи стали непосильны, процедура банкротства — это единственный законный способ аннулировать все виды долгов: кредиты, микрозаймы, налоги, долги по ЖКХ и распискам. Мы берем на себя полное ведение дела от сбора документов до финального судебного решения об освобождении вас от обязательств.</p>
+                            <p class="direction-result">Результат: Чистая кредитная история и полное спокойствие.</p>
+                        </div>
+
+                        <div class="direction-item">
+                            <div class="direction-header">
+                                <div class="direction-icon">>></div>
+                                <h3 class="direction-title">СПОРЫ С ФССП.<br>СНЯТИЕ АРЕСТОВ</h3>
+                            </div>
+                            <p class="direction-text">Судебные приставы часто нарушают права граждан, накладывая незаконные аресты на счета, заработную плату или имущество. Мы вступаем в дело немедленно: оспариваем действия пристава, добиваемся снятия арестов со счетов, взыскиваем незаконно удержанные средства и защищаем ваше имущество, на которое по закону нельзя обратить взыскание.</p>
+                            <p class="direction-result">Результат: Сохранение имущества и доступ к деньгам.</p>
+                        </div>
+
+                        <div class="direction-item">
+                            <div class="direction-header">
+                                <div class="direction-icon">>></div>
+                                <h3 class="direction-title">ДОПОЛНИТЕЛЬНЫЕ<br>ЮРИДИЧЕСКИЕ УСЛУГИ</h3>
+                            </div>
+                            <p class="direction-text">Мы готовы защищать ваши интересы не только в вопросах долгов. В сферу наших компетенций входит возврат навязанных услуг (особенно при покупке авто), взыскание компенсаций по Закону о защите прав потребителей, а также полное представительство клиента в судах общей юрисдикции и Арбитражных судах по гражданским и корпоративным спорам.</p>
+                            <p class="direction-result">Результат: Защита ваших прав и интересов во всех инстанциях.</p>
+                        </div>
+
+                        <a href="#" class="btn">Бесплатная консультация</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="urgent fade-up">
+            <div class="urgent-icon">
+                <svg viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
+            </div>
+            <h2 class="urgent-title">НЕ ОТКЛАДЫВАЙТЕ РЕШЕНИЕ<br>ДОЛГИ САМИ НЕ ИСЧЕЗНУТ</h2>
+            <p class="urgent-desc">Чем дольше вы откладываете обращение к юристу, тем больше растут пени, штрафы, и тем агрессивнее становятся действия ФССП. Не упустите момент, когда еще можно сохранить максимум имущества и остановить прессинг.</p>
+            <a href="#" class="btn">Бесплатная консультация</a>
+
+            <div class="urgent-cards">
+                <div class="urgent-card fade-up delay-100">
+                    <div class="urgent-card-icon"></div>
+                    <h4>УЗНАЙТЕ,<br>ПОДХОДИТЕ ЛИ ВЫ<br>ПОД БАНКРОТСТВО</h4>
+                    <p>Пройдите короткий тест, чтобы понять, какие долги можно списать и какое имущество точно останется у вас.</p>
+                    <a href="#" class="btn">Пройти тест за 1 минуту</a>
+                </div>
+                <div class="urgent-card fade-up delay-200">
+                    <div class="urgent-card-icon"></div>
+                    <h4>СРОЧНО СНЯТЬ<br>АРЕСТ СО СЧЕТА<br>ИЛИ ИМУЩЕСТВА</h4>
+                    <p>Приставы арестовали счет или карту? Получите экстренную консультацию и план немедленного оспаривания их действий.</p>
+                    <a href="#" class="btn">Бесплатная консультация</a>
+                </div>
+                <div class="urgent-card fade-up delay-300">
+                    <div class="urgent-card-icon"></div>
+                    <h4>ВЕРНЕМ ДЕНЬГИ ЗА<br>НАВЯЗАННЫЕ УСЛУГИ<br>АВТОСАЛОНА</h4>
+                    <p>Поможем аннулировать незаконные комиссии, страховки и дополнительные услуги, навязанные при покупке автомобиля.</p>
+                    <a href="#" class="btn">Рассчитать сумму возврата</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <div class="reviews-header fade-up">
+                <h2 class="section-title">НАШИ РЕЗУЛЬТАТЫ</h2>
+                <p>Наша главная цель — вернуть вам финансовое спокойствие. Посмотрите, как мы помогли нашим клиентам законно избавиться от долгов и прекратить давление со стороны ФССП.</p>
+            </div>
+
+            <div class="review-card fade-up">
+                <div class="review-left">
+                    <div class="review-avatar-wrap">
+                        <img src="img/lawer2.jpg" alt="Павел И." class="review-avatar">
+                        <div>
+                            <div class="review-name">ПАВЕЛ И.</div>
+                            <div class="review-city">г. Москва</div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Бесплатная консультация</a>
+                </div>
+                <div class="review-right">
+                    <div class="review-number">01</div>
+                    <h3 class="review-title">СПИСАНО 1 850 000 ₽ ДОЛГА ПО 4 КРЕДИТАМ</h3>
+                    <p class="review-stats">Проведено банкротство физлица. Долг списан полностью. Клиент сохранил единственное жилье и официально начал жизнь с чистого листа. Срок: 9 месяцев.</p>
+                    <div class="review-quote-header">
+                        Отзыв: <div class="review-quote-line"></div>
+                    </div>
+                    <p class="review-text">"Жить стало невозможно. Долг в полтора миллиона, четыре кредита и ежедневные звонки. Я думал, что потеряю квартиру. Благодаря [Ваша компания] процедура прошла максимально безболезненно. С меня списали все 1 850 000 ₽. С момента подачи заявления прекратились звонки, а через 9 месяцев я получил решение суда. Наконец-то я свободен!"</p>
+                </div>
+            </div>
+
+            <div class="review-card fade-up">
+                <div class="review-left">
+                    <div class="review-avatar-wrap">
+                        <img src="img/lawer2.jpg" alt="Марина С." class="review-avatar">
+                        <div>
+                            <div class="review-name">МАРИНА С.</div>
+                            <div class="review-city">г. Москва</div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Бесплатная консультация</a>
+                </div>
+                <div class="review-right">
+                    <div class="review-number">02</div>
+                    <h3 class="review-title">СНЯТ НЕЗАКОННЫЙ АРЕСТ С ЗАРПЛАТНОГО СЧЕТА<br>И ВОЗВРАЩЕНО 95 000 ₽</h3>
+                    <p class="review-stats">Мы немедленно обжаловали действия пристава в суде. Арест снят в течение 7 дней. Клиенту возвращена незаконно удержанная сумма 95 000 ₽. Срок: 7 дней.</p>
+                    <div class="review-quote-header">
+                        Отзыв: <div class="review-quote-line"></div>
+                    </div>
+                    <p class="review-text">"Пристав арестовал всю мою зарплату, не оставив денег даже на еду. Я была в панике. Обратилась к ребятам, и они сработали очень быстро, как обещали. За неделю они добились снятия незаконного ареста и вернули мне 95 000 ₽, которые уже ушли приставам."</p>
+                </div>
+            </div>
+
+            <div class="review-card fade-up">
+                <div class="review-left">
+                    <div class="review-avatar-wrap">
+                        <img src="img/lawer2.jpg" alt="Елена Р." class="review-avatar">
+                        <div>
+                            <div class="review-name">ЕЛЕНА Р.</div>
+                            <div class="review-city">г. Москва</div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Бесплатная консультация</a>
+                </div>
+                <div class="review-right">
+                    <div class="review-number">03</div>
+                    <h3 class="review-title">ПОЛНОЕ СПИСАНИЕ 870 000 ₽ ПРИ АКТИВНОМ<br>ИСПОЛНИТЕЛЬНОМ ПРОИЗВОДСТВЕ</h3>
+                    <p class="review-stats">Мы приостановили действия ФССП в рамках банкротства. Все долги списаны. Аресты сняты. Имущество, не подлежащее взысканию, сохранено. Срок: 10 месяцев.</p>
+                    <div class="review-quote-header">
+                        Отзыв: <div class="review-quote-line"></div>
+                    </div>
+                    <p class="review-text">"У меня уже было активное исполнительное производство, и приставы собирались описывать имущество, когда я обратилась сюда. Юристы успокоили, моментально приостановили действия ФССП, и начали банкротство. В итоге, 870 000 рублей списаны, и самое главное — аресты сняты, мою мебель и технику не забрали. Спасибо за профессионализм и полное сопровождение!"</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact fade-up">
+            <h2 class="contact-title">СДЕЛАЙТЕ ПЕРВЫЙ ШАГ К ФИНАНСОВОЙ СВОБОДЕ.<br>СВЯЖИТЕСЬ СО МНОЙ СЕГОДНЯ!</h2>
+            <p class="contact-desc">Не позволяйте долгам и страху управлять вашей жизнью. Заполните форму обратной связи, и я свяжусь с вами в течение 15 минут для проведения бесплатного и конфиденциального анализа вашей ситуации.</p>
+            
+            <form class="contact-form" action="#" method="POST">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="tel" placeholder="Номер телефона" required>
+                <button type="submit" class="btn">Связаться с юристом напрямую</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Отключаем наблюдение после появления
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.fade-up');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
